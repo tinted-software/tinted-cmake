@@ -1,0 +1,52 @@
+add_library(
+	android_artbase
+	${ART_SOURCE_DIR}/libartbase/arch/instruction_set.cc
+	${ART_SOURCE_DIR}/libartbase/base/allocator.cc
+	${ART_SOURCE_DIR}/libartbase/base/arena_allocator.cc
+	${ART_SOURCE_DIR}/libartbase/base/arena_bit_vector.cc
+	${ART_SOURCE_DIR}/libartbase/base/bit_vector.cc
+	${ART_SOURCE_DIR}/libartbase/base/compiler_filter.cc
+	${ART_SOURCE_DIR}/libartbase/base/file_magic.cc
+	${ART_SOURCE_DIR}/libartbase/base/file_utils.cc
+	${ART_SOURCE_DIR}/libartbase/base/flags.cc
+	${ART_SOURCE_DIR}/libartbase/base/hex_dump.cc
+	${ART_SOURCE_DIR}/libartbase/base/logging.cc
+	${ART_SOURCE_DIR}/libartbase/base/malloc_arena_pool.cc
+	${ART_SOURCE_DIR}/libartbase/base/membarrier.cc
+	${ART_SOURCE_DIR}/libartbase/base/memfd.cc
+	${ART_SOURCE_DIR}/libartbase/base/memory_region.cc
+	${ART_SOURCE_DIR}/libartbase/base/mem_map.cc
+	${ART_SOURCE_DIR}/libartbase/base/pointer_size.cc
+	${ART_SOURCE_DIR}/libartbase/base/runtime_debug.cc
+	${ART_SOURCE_DIR}/libartbase/base/scoped_arena_allocator.cc
+	${ART_SOURCE_DIR}/libartbase/base/scoped_flock.cc
+	${ART_SOURCE_DIR}/libartbase/base/socket_peer_is_trusted.cc
+	${ART_SOURCE_DIR}/libartbase/base/time_utils.cc
+	${ART_SOURCE_DIR}/libartbase/base/unix_file/fd_file.cc
+	${ART_SOURCE_DIR}/libartbase/base/unix_file/random_access_file_utils.cc
+	${ART_SOURCE_DIR}/libartbase/base/utils.cc
+	${ART_SOURCE_DIR}/libartbase/base/globals_unix.cc
+	${ART_SOURCE_DIR}/libartbase/base/mem_map_unix.cc
+)
+target_include_directories(
+	android_artbase
+	PUBLIC
+	$<BUILD_INTERFACE:${ART_SOURCE_DIR}/libartbase>
+	$<INSTALL_INTERFACE:include>
+)
+target_link_libraries(
+	android_artbase
+	PUBLIC
+	android_base
+	android_log
+)
+target_compile_definitions(
+	android_artbase
+	PUBLIC
+	-DART_STACK_OVERFLOW_GAP_arm=8192
+	-DART_STACK_OVERFLOW_GAP_arm64=8192
+	-DART_STACK_OVERFLOW_GAP_riscv64=8192
+	-DART_STACK_OVERFLOW_GAP_x86=8192
+	-DART_STACK_OVERFLOW_GAP_x86_64=8192
+	-DART_FRAME_SIZE_LIMIT=7400
+)

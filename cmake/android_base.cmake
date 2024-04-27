@@ -1,0 +1,41 @@
+add_library(
+	android_base
+	${LIBBASE_SOURCE_DIR}/abi_compatibility.cpp
+	${LIBBASE_SOURCE_DIR}/chrono_utils.cpp
+	${LIBBASE_SOURCE_DIR}/cmsg.cpp
+	${LIBBASE_SOURCE_DIR}/file.cpp
+	${LIBBASE_SOURCE_DIR}/hex.cpp
+	${LIBBASE_SOURCE_DIR}/logging.cpp
+	${LIBBASE_SOURCE_DIR}/mapped_file.cpp
+	${LIBBASE_SOURCE_DIR}/parsebool.cpp
+	${LIBBASE_SOURCE_DIR}/parsenetaddress.cpp
+	${LIBBASE_SOURCE_DIR}/posix_strerror_r.cpp
+	${LIBBASE_SOURCE_DIR}/process.cpp
+	${LIBBASE_SOURCE_DIR}/properties.cpp
+	${LIBBASE_SOURCE_DIR}/result.cpp
+	${LIBBASE_SOURCE_DIR}/stringprintf.cpp
+	${LIBBASE_SOURCE_DIR}/strings.cpp
+	${LIBBASE_SOURCE_DIR}/threads.cpp
+	${LIBBASE_SOURCE_DIR}/test_utils.cpp
+	${LIBBASE_SOURCE_DIR}/errors_unix.cpp
+	${LIBLOG_SOURCE_DIR}/log_event_list.cpp
+	${LIBLOG_SOURCE_DIR}/log_event_write.cpp
+	${LIBLOG_SOURCE_DIR}/logger_name.cpp
+	${LIBLOG_SOURCE_DIR}/logger_read.cpp
+	${LIBLOG_SOURCE_DIR}/logger_write.cpp
+	${LIBLOG_SOURCE_DIR}/logprint.cpp
+	${LIBLOG_SOURCE_DIR}/properties.cpp
+	${LIBLOG_SOURCE_DIR}/event_tag_map.cpp
+	${LIBLOG_SOURCE_DIR}/log_time.cpp
+)
+target_include_directories(
+	android_base
+	PUBLIC
+	$<BUILD_INTERFACE:${LIBBASE_SOURCE_DIR}/include>
+	$<BUILD_INTERFACE:${LIBLOG_SOURCE_DIR}/include>
+	$<BUILD_INTERFACE:${LIBCUTILS_SOURCE_DIR}/include>
+	$<BUILD_INTERFACE:${LIBUTILS_SOURCE_DIR}/include>
+	$<BUILD_INTERFACE:${LIBSYSTEM_SOURCE_DIR}/include>
+	$<INSTALL_INTERFACE:include>
+)
+
